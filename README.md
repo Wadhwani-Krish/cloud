@@ -2,7 +2,7 @@
 
 ## Flask via Google Cloud
 
-Add code and document steps in [cloud/team/2005/[handle]](https://github.com/modelearth/cloud/) for deploying your Flask site sample code to Google Cloud. 
+Create a [cloud/team/2025/[handle]](https://github.com/modelearth/cloud/) folder where you'll add deployment steps to launch a Flask site using Google Cloud. 
 
 For your [handle] use lowercase firstname and optionally your last initial, or your nickname.
 
