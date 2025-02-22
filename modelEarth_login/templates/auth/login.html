@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Log In{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<p> This email is used for OTP: <strong>{{ email }}</strong></p>
+  <form method="post">
+    <label for="otp">One-Time Password </label>
+    <span style="color: red; font-size: 12px;">Check your email for OTP</span>
+    <input name="otp" id="otp" required>
+
+    <button type="submit">Login</button>
+</form>
+{% endblock %}
