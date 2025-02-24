@@ -34,11 +34,11 @@ def register():
 
         if error is None:
             try:
-                totp_secret = pyotp.random_base32()  # Generate a TOTP secret
+
                 with db.cursor() as cursor:
                     cursor.execute(
-                        "INSERT INTO user (email, username, password, totp_secret) VALUES (%s, %s, %s, %s)",
-                        (email, username, generate_password_hash(password), totp_secret),
+                        "INSERT INTO user (email, username, password) VALUES (%s, %s, %s)",
+                        (email, username, generate_password_hash(password)),
                     )
                 db.commit()
             except pymysql.err.IntegrityError:
@@ -119,6 +119,7 @@ def login_step():
             # Store email in session for next step
             session["email"] = user["email"]
             session["username"] = user["username"]
+            session['user_id'] = user['id']
             return redirect(url_for("auth.login"))  # Go to OTP verification page
 
         flash(error)
@@ -127,8 +128,8 @@ def login_step():
 
 @bp.route("/login", methods=["GET", "POST"])
 def login():
-    email = session.get("email")  # Retrieve stored email from session
-    username = session.get("username")  # Retrieve username
+    email = session.get('email')
+    username = session.get("username")
 
     if not email:
         flash("Invalid session. Please log in again.")
@@ -136,13 +137,9 @@ def login():
 
     if request.method == 'GET':
 
-        email = session.get('email')
-
-        otp_secret = ""
-        for i in range(9):
-            otp_secret += str(random.randint(0, 9))
-
+        otp_secret = pyotp.random_base32()
         print(otp_secret)
+
         session['otp_secret'] = otp_secret
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
@@ -155,32 +152,24 @@ def login():
         server.send_message(msg)
         print("Email send.")
 
-        session["email"] = email
 
-        return render_template('auth/login.html')
+
+        return render_template('auth/login.html', email=email)
 
     if request.method == 'POST':
         otp_secret = session.get('otp_secret')
         otp = request.form['otp']
-        email = session.get('email')
-        password = request.form['password']
+
+        user_id = session.get('user_id')
+
 
         db = get_db()
         error = None
-
-        with db.cursor(pymysql.cursors.DictCursor) as cursor:
-            cursor.execute('SELECT * FROM user WHERE email = %s', (email,))
-            user = cursor.fetchone()
-
-        if user is None:
-            error = 'Incorrect email.'
         if not otp_secret == str(otp):
             error = 'Invalid one-time password.'
-        elif not check_password_hash(user['password'], password):
-            error = 'Incorrect password.'
 
         if error is None:
-            session['user_id'] = user['id']
+            session['user_id'] = user_id
             session.pop("email", None)
             session.pop("username", None)
 
@@ -188,7 +177,7 @@ def login():
 
         flash(error)
 
-    return render_template('auth/login.html', email=email)
+    return render_template('auth/login.html')
 
 @bp.before_app_request
 def load_logged_in_user():
