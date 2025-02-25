@@ -6,5 +6,6 @@ CREATE TABLE user (
     email VARCHAR(255) NOT NULL,
     username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
+    is_google BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (id)
 );
