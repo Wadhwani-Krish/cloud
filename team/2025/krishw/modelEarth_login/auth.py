@@ -44,7 +44,7 @@ def register():
             except pymysql.err.IntegrityError:
                 error = f"User {username} or email {email} is already registered."
             else:
-                return redirect(url_for("auth.qr_code", email=email))
+                return redirect(url_for("auth.login_step", email=email))
 
         flash(error)
 
