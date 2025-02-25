@@ -9,7 +9,7 @@ oauth = OAuth()
 
 def create_app(test_config=None):
     load_dotenv()
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder="static")
     # Load configurations
     app.config["GOOGLE_CLIENT_ID"] = os.getenv("GOOGLE_CLIENT_ID")
     app.config["GOOGLE_CLIENT_SECRET"] = os.getenv("GOOGLE_CLIENT_SECRET")
