@@ -40,7 +40,7 @@ example of .env file:
 Set Up MySQL Database:
 
  1. Start MySQL:
-    #sudo systemctl start mysql
+    sudo systemctl start mysql
  2. Secure MySQL installation:
     sudo mysql_secure_installation
  3. Log into MySQL and create a database:
