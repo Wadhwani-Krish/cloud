@@ -26,21 +26,21 @@ Cloning the Project from GitHub to VM Instance in GCP:
 
 example of .env file:
 
-secret_key=your_secret_key
-host=localhost
-database_URL=mysql+pymysql://MySQL_user:MySQL_password@host/MySQL_database?
-MySQL_password=your_mysql_password
-MySQL_user=your_mysql_username
-MySQL_database=your_mysql_database_name
-email_pass=your_emai_app_password
-email_id=your_email_id
-GOOGLE_CLIENT_ID=your_Oauth_client_ID
-GOOGLE_CLIENT_SECRET=your_Oauth_client_secret
+1. secret_key=your_secret_key
+2. host=localhost
+3. database_URL=mysql+pymysql://MySQL_user:MySQL_password@host/MySQL_database?
+4. MySQL_password=your_mysql_password
+5. MySQL_user=your_mysql_username
+6. MySQL_database=your_mysql_database_name
+7. email_pass=your_emai_app_password
+8. email_id=your_email_id
+9. GOOGLE_CLIENT_ID=your_Oauth_client_ID
+10. GOOGLE_CLIENT_SECRET=your_Oauth_client_secret
     
 Set Up MySQL Database:
 
  1. Start MySQL:
-    sudo systemctl start mysql
+    """sudo systemctl start mysql"""
  2. Secure MySQL installation:
     sudo mysql_secure_installation
  3. Log into MySQL and create a database:
