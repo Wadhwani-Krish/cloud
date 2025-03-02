@@ -1,7 +1,7 @@
 # Login Page
 Required Libraries to Install OAuth:
 
-pip install authlib requests
+```pip install authlib requests```
 
 Set Up Google OAuth Client:
 
@@ -14,14 +14,14 @@ Set Up Google OAuth Client:
 Cloning the Project from GitHub to VM Instance in GCP:
 
  1. Install necessary packages:
-    sudo apt install python3-pip python3-venv git mysql-client -y
+    ```sudo apt install python3-pip python3-venv git mysql-client -y```
  2. Clone the repository:
-    git clone https://github.com/Git-hub-ID/repo.git
+    ```git clone https://github.com/Git-hub-ID/repo.git```
  3. Install dependencies:
-    pip install -r requirements.txt
+    ```pip install -r requirements.txt```
  4. Set up environment variables:
-    touch .env
-    nano .env
+    ```touch .env```
+    ```nano .env``` 
     (Copy and paste the environment variables)  
 
 example of .env file:
@@ -40,12 +40,12 @@ example of .env file:
 Set Up MySQL Database:
 
  1. Start MySQL:
-    sudo systemctl start mysql
+    ```sudo systemctl start mysql```
  2. Secure MySQL installation:
-    sudo mysql_secure_installation
+    ```sudo mysql_secure_installation```
  3. Log into MySQL and create a database:
-    mysql -u root -p
-    CREATE DATABASE Db_Name;
-    FLUSH PRIVILEGES;
+    ```mysql -u root -p```
+    ```CREATE DATABASE Db_Name;```
+    ```FLUSH PRIVILEGES;```
  4. Initialize the database:
-    flask app modelEarth_login init-db
+    ```flask app modelEarth_login init-db```
