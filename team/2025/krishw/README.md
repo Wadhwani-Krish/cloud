@@ -1,7 +1,7 @@
 # Login Page
 Required Libraries to Install OAuth:
 
-pip install authlib request
+pip install authlib requests
 
 Set Up Google OAuth Client:
 
